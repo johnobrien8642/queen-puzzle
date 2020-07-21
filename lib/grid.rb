@@ -2,6 +2,7 @@ require "forwardable"
 require_relative "move"
 require_relative "token"
 
+
 class Grid
   extend Forwardable
   def_delegators :@store, :each, :length, :[], :transpose

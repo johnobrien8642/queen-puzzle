@@ -1,5 +1,6 @@
 require "set"
 require_relative "grid"
+require_relative "console_printer"
 
 class BruteForceSolver
   def initialize(n)
@@ -18,6 +19,11 @@ class BruteForceSolver
     grid
   end
 
+  def print
+    printed_grid = ConsolePrinter.new(grid)
+    printed_grid.print
+  end
+  
   private
 
   attr_reader :invalid_pos, :queen_pos, :grid
