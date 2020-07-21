@@ -20,8 +20,7 @@ class BruteForceSolver
   end
 
   def print
-    printed_grid = ConsolePrinter.new(grid)
-    printed_grid.print
+    ConsolePrinter.new(grid).print
   end
   
   private
