@@ -9,7 +9,7 @@ class BruteForceSolver
   end
 
   def solve
-    raise "No solution for grids smaller 4" if grid.length < 4
+    raise "No solution for grids smaller than 4" if grid.length < 4
 
     until solved?
       place_queen
