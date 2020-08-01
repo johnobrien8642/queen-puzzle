@@ -37,7 +37,7 @@ describe Grid do
     expect(result).to eq(false)
   end
 
-    it "does not place queen if queen is already in row" do
+  it "does not place queen if queen is already in row" do
     grid = Grid.new(4)
     grid.place_queen(0, 0)
 
@@ -54,8 +54,6 @@ describe Grid do
 
     expect(result).to eq(false)
   end
-
-
 end
 
 
