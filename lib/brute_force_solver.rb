@@ -16,7 +16,6 @@ class BruteForceSolver
       reset unless valid_move_possible?
     end
     grid
-    return true
   end
 
   private
