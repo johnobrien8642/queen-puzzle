@@ -10,12 +10,12 @@ class Token
   def empty?
     name == "_"
   end
-
+  
   def to_s
     name
   end
 
   private
 
-    attr_reader :name
+  attr_reader :name
 end
