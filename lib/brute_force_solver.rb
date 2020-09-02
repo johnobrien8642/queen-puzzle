@@ -1,5 +1,6 @@
 require "set"
 require_relative "grid"
+require "byebug"
 
 class BruteForceSolver
   def initialize(n)
@@ -25,7 +26,7 @@ class BruteForceSolver
   def place_queen
     random_pos = pick_random_pos
 
-    if grid.place_queen(*pick_random_pos)
+    if grid.place_queen(*random_pos)
       queen_pos << random_pos
     else
       invalid_pos << random_pos

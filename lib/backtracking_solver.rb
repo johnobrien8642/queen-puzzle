@@ -8,6 +8,8 @@ class BacktrackingSolver
   end
 
   def solve
+    raise "No solution for grids smaller than 4" if grid.length < 4
+    
     place_queens
   end
 

@@ -20,7 +20,7 @@ class Grid
   def max_invalid_positions
     store.flatten.count - length
   end
-
+  
   private
 
   attr_reader :store

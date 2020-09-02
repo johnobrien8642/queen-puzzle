@@ -12,7 +12,7 @@ class Diagonal
   end
 
   def self.for(position, size)
-    Diagonal.new(position: position, delta: [-1, -1], to: [0, 0]).all +
+      Diagonal.new(position: position, delta: [-1, -1], to: [0, 0]).all +
       Diagonal.new(position: position, delta: [1, 1], to: [size, size]).all +
       Diagonal.new(position: position, delta: [-1, 1], to: [0, size]).all +
       Diagonal.new(position: position, delta: [1, -1], to: [size, 0]).all
