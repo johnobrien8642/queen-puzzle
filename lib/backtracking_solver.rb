@@ -1,4 +1,3 @@
-require "set"
 require_relative "grid"
 
 class BacktrackingSolver
