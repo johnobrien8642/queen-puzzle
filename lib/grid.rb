@@ -17,8 +17,19 @@ class Grid
     true
   end
 
+  def place_queens_anywhere(row, column)
+    return false if store[row][column].queen?
+    
+    store[row][column] = Token.new("Q")
+  end
+
   def max_invalid_positions
     store.flatten.count - length
+  end
+
+  def safe_pos?(row, column)
+    return false if Move.new([row, column], self.grid).invalid?
+    true
   end
   
   private
