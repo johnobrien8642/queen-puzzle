@@ -4,15 +4,7 @@ class ValidMoves
     def initialize
 
     
- DELTA = [
-    [0, 1],
-    [1, 1],
-    [1, 0],
-    [1, -1],
-    [0, -1],
-    [-1, -1],
-    [1, 0]
-    ]
+
 
 def reposition(row, col)
     cur_x, cur_y = row, col

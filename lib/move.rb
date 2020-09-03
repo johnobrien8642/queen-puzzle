@@ -10,6 +10,10 @@ class Move
     queen_in_col? || queen_in_row? || queen_in_diagonal?
   end
 
+  def score
+
+  end
+
   private
 
   attr_reader :row, :column, :grid
@@ -32,5 +36,10 @@ class Move
 
   def queen_in_diagonal?
     Diagonal.for([row, column], size).any? { |pos| grid[pos[0]][pos[1]].queen? }
+  end
+
+  def queen_count_for_position
+    QueenRadar.for([row, column], size, grid).inject(0) { |count, if_queen_found| count += if_queen_found }
+
   end
 end
