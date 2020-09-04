@@ -11,7 +11,7 @@ class Move
   end
 
   def score
-
+    queen_count_for_position
   end
 
   private
@@ -40,6 +40,5 @@ class Move
 
   def queen_count_for_position
     QueenRadar.for([row, column], size, grid).inject(0) { |count, if_queen_found| count += if_queen_found }
-
   end
 end
