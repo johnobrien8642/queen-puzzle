@@ -10,11 +10,13 @@ class QueenRadar
     @grid = grid
   end
 
+  
+
   def self.for(position, size)
       QueenRadar.new(position: position, delta: [0, 1], to: [0, size]).all +
       QueenRadar.new(position: position, delta: [1, 1], to: [size, size]).all +
       QueenRadar.new(position: position, delta: [1, 0], to: [size, 0]).all +
-      QueenRadar.new(position: position, delta: [-1, -1], to: [0, 0]).all +
+      QueenRadar.new(position: position, delta: [1, -1], to: [0, 0]).all +
       QueenRadar.new(position: position, delta: [0, -1], to: [0, 0]).all +
       QueenRadar.new(position: position, delta: [-1, -1], to: [0, 0]).all +
       QueenRadar.new(position: position, delta: [-1, 0], to: [0, 0]).all

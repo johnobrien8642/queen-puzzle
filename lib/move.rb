@@ -1,4 +1,5 @@
 require_relative "diagonal"
+require_relative "valid_moves"
 
 class Move
   def initialize(position, grid)
@@ -10,8 +11,12 @@ class Move
     queen_in_col? || queen_in_row? || queen_in_diagonal?
   end
 
-  def score
-    queen_count_for_position
+  def next_move
+    return false if !get_next_move
+    [
+      get_next_move[0],
+      get_next_move[1]
+    ]
   end
 
   private
@@ -38,7 +43,9 @@ class Move
     Diagonal.for([row, column], size).any? { |pos| grid[pos[0]][pos[1]].queen? }
   end
 
-  def queen_count_for_position
-    QueenRadar.for([row, column], size, grid).inject(0) { |count, if_queen_found| count += if_queen_found }
+  def get_next_move 
+    ValidMoves.new([row, column], self.grid).next_valid_move unless false
+    false
   end
+
 end

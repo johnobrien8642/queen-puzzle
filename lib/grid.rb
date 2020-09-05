@@ -23,6 +23,14 @@ class Grid
     store[row][column] = Token.new("Q")
   end
 
+  def reposition_queen(row, column)
+    cur_row, cur_col = row, column
+    next_pos = Move.new([row, column], self).next_move
+    return false if !next_pos
+    store[cur_row][cur_col] = Token.new("_")
+    store[next_pos[0]][next_pos[1]] = Token.new("Q")
+  end
+
   def max_invalid_positions
     store.flatten.count - length
   end

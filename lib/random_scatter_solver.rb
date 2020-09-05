@@ -40,7 +40,7 @@ class RandomScatterSolver
         if safe_pos?(row, col)
           col += 1
         else
-          redo if reposition(row, col)
+          redo if reposition_queen(row, col)
           col += 1
         end
       else 
