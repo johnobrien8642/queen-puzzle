@@ -12,12 +12,9 @@ class Move
   end
 
   def next_move
-    return false if !get_next_move
-    [
-      get_next_move[0],
-      get_next_move[1]
-    ]
+    get_next_move
   end
+
 
   private
 
@@ -43,9 +40,8 @@ class Move
     Diagonal.for([row, column], size).any? { |pos| grid[pos[0]][pos[1]].queen? }
   end
 
-  def get_next_move 
-    ValidMoves.new([row, column], self.grid).next_valid_move unless false
-    false
+  def get_next_move
+    ValidMoves.new([row, column], grid).next_valid_move 
   end
 
 end

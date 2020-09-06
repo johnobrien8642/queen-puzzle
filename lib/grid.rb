@@ -27,17 +27,14 @@ class Grid
     cur_row, cur_col = row, column
     next_pos = Move.new([row, column], self).next_move
     return false if !next_pos
+    queen_pos.delete([cur_row, cur_col])
+    queen_pos.push(next_pos)
     store[cur_row][cur_col] = Token.new("_")
     store[next_pos[0]][next_pos[1]] = Token.new("Q")
   end
 
   def max_invalid_positions
     store.flatten.count - length
-  end
-
-  def safe_pos?(row, column)
-    return false if Move.new([row, column], self.grid).invalid?
-    true
   end
   
   private

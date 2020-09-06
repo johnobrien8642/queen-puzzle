@@ -6,7 +6,6 @@ require 'byebug'
 
 class RandomScatterSolver
 
-
   def initialize(n)
     @grid = Grid.new(n)
     @queen_pos = Array.new
@@ -32,15 +31,16 @@ class RandomScatterSolver
   end
 
   def reposition_until_all_queens_safe
-    debugger
+    # debugger
     row = 0
     col = 0
+    debugger
     until finished?
       if grid[row][col].queen? && in_bounds?(row, col)
         if safe_pos?(row, col)
           col += 1
         else
-          redo if reposition_queen(row, col)
+          redo if grid.reposition_queen(row, col)
           col += 1
         end
       else 
@@ -75,6 +75,10 @@ class RandomScatterSolver
     [idx1, idx2]
   end
 
+  def safe_pos?(row, column)
+    return false if Move.new([row, column], self.grid).invalid?
+    true
+  end
 
   def print
     check = ConsolePrinter.new(grid)

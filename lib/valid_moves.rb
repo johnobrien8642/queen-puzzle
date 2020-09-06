@@ -1,4 +1,5 @@
 require_relative "queen_radar"
+require_relative "token"
 
 class ValidMoves
 
@@ -12,23 +13,27 @@ class ValidMoves
       [-1, -0]
   ]
 
-  def initialize(position:, grid)
+  def initialize(position, grid)
     @row, @column = position
     @grid = grid
   end
 
   def next_valid_move 
-    moves = valid_moves_with_queen_scores_hash
-    if moves.values.all? { |val| val.eql?(val) } return false
+    moves = valid_moves_with_queen_score_hash(row, column)
+    return false if all_values_equal?(moves)
     # hash sort_by returns 2D array
     sorted_moves_by_score = moves.sort_by { |move, val| val }
     sorted_moves_by_score[0][0]
   end
 
-    
   private
 
   attr_reader :row, :column, :grid
+
+  def all_values_equal?(moves)
+    moves.values.all? { |val| val.eql?(val) }
+  end
+
 
   def valid_moves_with_queen_score_hash(row, col)
     cur_x, cur_y = row, col
@@ -40,20 +45,23 @@ class ValidMoves
 
         new_pos.all? do |coord| 
             coord.between?(0, grid.length - 1) && 
-            Move.new([coord[0], coord[1]], self.grid).empty?
+            grid[coord[0]][coord[1]] == "_"
             valid_moves << new_pos
         end
     end
 
-    if valid_moves.empty? return false
+    return false if valid_moves.empty? 
 
     valid_moves.each do |pos|
-        valid_moves_with_queen_scores[move] = queen_score(pos[0], pos[1])
+        valid_moves_with_queen_scores[pos] = queen_score(pos[0], pos[1])
     end
 
     valid_moves_with_queen_scores
-end
+  end
 
+  def size 
+    @grid.length - 1
+  end
 
   def queen_score(row, column)
     QueenRadar.for([row, column], size, grid).inject(0) { |count, if_queen_found| count += if_queen_found }
